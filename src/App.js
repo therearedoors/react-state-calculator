@@ -6,7 +6,16 @@ function App() {
   const [valOne,updateValueOne] = useState("0")
   const [valTwo,updateValueTwo] = useState("0")
   const [operator,updateOperator] = useState('+')
-  const getInt = (val,number) => val === "0" ? number : val+number
+  let recallOne 
+  let recallTwo
+  const store = number => {
+    recallOne = String(number)
+    recallTwo = String(number)
+  }
+  const getFloat = (val,number) => {
+    if (number === '.') return val.includes('.') ? val : val+'.'
+    else return val === "0" ? number : val+number
+  }
   const calculate = (operator) => {
     const one = Number(valOne)
     const two = Number(valTwo)
@@ -27,18 +36,20 @@ function App() {
         <div className="panel">
           <p>{valOne}</p>
           <div className="numbers">
-            <button onClick = {() => updateValueOne(() => getInt(valOne,"1"))}>1</button>
-            <button onClick = {() => updateValueOne(() => getInt(valOne,"2"))}>2</button>
-            <button onClick = {() => updateValueOne(() => getInt(valOne,"3"))}>3</button>
-            <button onClick = {() => updateValueOne(() => getInt(valOne,"4"))}>4</button>
-            <button onClick = {() => updateValueOne(() => getInt(valOne,"5"))}>5</button>
-            <button onClick = {() => updateValueOne(() => getInt(valOne,"6"))}>6</button>
-            <button onClick = {() => updateValueOne(() => getInt(valOne,"7"))}>7</button>
-            <button onClick = {() => updateValueOne(() => getInt(valOne,"8"))}>8</button>
-            <button onClick = {() => updateValueOne(() => getInt(valOne,"9"))}>9</button>
-            <button onClick = {() => updateValueOne(() => getInt(valOne,"0"))}>0</button>
+            <button onClick = {() => updateValueOne(() => getFloat(valOne,"1"))}>1</button>
+            <button onClick = {() => updateValueOne(() => getFloat(valOne,"2"))}>2</button>
+            <button onClick = {() => updateValueOne(() => getFloat(valOne,"3"))}>3</button>
+            <button onClick = {() => updateValueOne(() => getFloat(valOne,"4"))}>4</button>
+            <button onClick = {() => updateValueOne(() => getFloat(valOne,"5"))}>5</button>
+            <button onClick = {() => updateValueOne(() => getFloat(valOne,"6"))}>6</button>
+            <button onClick = {() => updateValueOne(() => getFloat(valOne,"7"))}>7</button>
+            <button onClick = {() => updateValueOne(() => getFloat(valOne,"8"))}>8</button>
+            <button onClick = {() => updateValueOne(() => getFloat(valOne,"9"))}>9</button>
+            <button onClick = {() => updateValueOne(() => getFloat(valOne,"0"))}>0</button>
+            <button onClick = {() => updateValueOne(() => getFloat(valOne,"."))}>.</button>
             <button onClick = {() => updateValueOne("0")}>Clear</button>
           </div>
+          <button onClick = {() => updateValueOne(recallOne)}>Recall</button>
         </div>
         
         <div className="panel">
@@ -54,21 +65,24 @@ function App() {
         <div className="panel">
           <p>{valTwo}</p>
           <div className="numbers">
-          <button onClick = {() => updateValueTwo(() => getInt(valTwo,"1"))}>1</button>
-            <button onClick = {() => updateValueTwo(() => getInt(valTwo,"2"))}>2</button>
-            <button onClick = {() => updateValueTwo(() => getInt(valTwo,"3"))}>3</button>
-            <button onClick = {() => updateValueTwo(() => getInt(valTwo,"4"))}>4</button>
-            <button onClick = {() => updateValueTwo(() => getInt(valTwo,"5"))}>5</button>
-            <button onClick = {() => updateValueTwo(() => getInt(valTwo,"6"))}>6</button>
-            <button onClick = {() => updateValueTwo(() => getInt(valTwo,"7"))}>7</button>
-            <button onClick = {() => updateValueTwo(() => getInt(valTwo,"8"))}>8</button>
-            <button onClick = {() => updateValueTwo(() => getInt(valTwo,"9"))}>9</button>
-            <button onClick = {() => updateValueTwo(() => getInt(valTwo,"0"))}>0</button>
+          <button onClick = {() => updateValueTwo(() => getFloat(valTwo,"1"))}>1</button>
+            <button onClick = {() => updateValueTwo(() => getFloat(valTwo,"2"))}>2</button>
+            <button onClick = {() => updateValueTwo(() => getFloat(valTwo,"3"))}>3</button>
+            <button onClick = {() => updateValueTwo(() => getFloat(valTwo,"4"))}>4</button>
+            <button onClick = {() => updateValueTwo(() => getFloat(valTwo,"5"))}>5</button>
+            <button onClick = {() => updateValueTwo(() => getFloat(valTwo,"6"))}>6</button>
+            <button onClick = {() => updateValueTwo(() => getFloat(valTwo,"7"))}>7</button>
+            <button onClick = {() => updateValueTwo(() => getFloat(valTwo,"8"))}>8</button>
+            <button onClick = {() => updateValueTwo(() => getFloat(valTwo,"9"))}>9</button>
+            <button onClick = {() => updateValueTwo(() => getFloat(valTwo,"0"))}>0</button>
+            <button onClick = {() => updateValueTwo(() => getFloat(valTwo,"."))}>.</button>
             <button onClick = {() => updateValueTwo("0")}>Clear</button>
           </div>
+          <button onClick = {() => updateValueTwo(recallTwo)}>Recall</button>
         </div>
         <div className="panel answer">
           <p>{answer}</p>
+          <button onClick = {() => store(answer)}>Store</button>
         </div>
     </div>
   )
